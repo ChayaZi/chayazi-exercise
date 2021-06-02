@@ -1,0 +1,42 @@
+<div style="text-align: center; ">
+  <br/>
+  <input type="text" placeholder="...הקלד כאן" style="text-align: right;"
+  #searchText (keyup)="searchCard(searchText.value)" />
+  <span> :חיפוש </span>
+  <br/>
+  <br/>
+  <div>
+    <a (click)="all()" style="cursor:pointer; color:blue; text-decoration:underline">הכל</a>|
+    <a (click)="chosen()" style="cursor:pointer; color:blue; text-decoration:underline">נבחרו</a>|
+    <a (click)="notChosen()" style="cursor:pointer; color:blue; text-decoration:underline">לא נבחרו</a>
+  </div>
+  <br/>
+  <br/>
+
+  <div class="centerDiv">
+    <div class="left"></div>
+    <div class="center"> 
+      <table style="margin: 2px; ">
+        <tr *ngFor="let cardLine of cardLists">
+          <td *ngFor="let card of cardLine">
+            <app-card *ngIf="card.view" [cardNum]="card.id"  
+            (cardChosen)="$event? addItem(card.id): removeItem(card.id)">
+            </app-card>
+          </td>
+        </tr>
+      </table>
+   </div>
+  <div class="right" style="direction: rtl; text-align: right;"> 
+      
+    <span>סך שמות זהים:</span>
+    <span>{{equalNames}}</span>
+    <br/>
+    <span>סך שמות כוללים:</span>
+    <span>{{amountNames}}</span>
+    <br/>
+    <span>רשימת כרטיסים שנבחרו:</span>
+    <span>{{chosenCards.join(', ')}}</span>
+  </div>
+</div>
+
+</div>
